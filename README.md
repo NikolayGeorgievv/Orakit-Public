@@ -10,7 +10,7 @@ Free, browser-based developer tools for Oracle databases. Paste your execution p
 
 ## Tools
 
-### Execution Plan Visualizer *(Live)*
+## Execution Plan Visualizer
 
 Parses Oracle `DBMS_XPLAN` output and renders it as an interactive collapsible tree with real-time analysis.
 
