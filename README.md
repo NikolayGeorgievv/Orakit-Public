@@ -38,13 +38,59 @@ Parses Oracle `DBMS_XPLAN` output and renders it as an interactive collapsible t
 | Index Recommendation | Filter predicates on full scans with >5K rows; skips function-wrapped columns, leading wildcards, and column-to-column comparisons |
 | Cardinality Divergence | ALLSTATS plans where actual vs estimated rows diverge ≥10× (warning) or ≥100× (critical), normalized by `Starts` count |
 
-### PL/SQL Dependency Viewer *(Coming Soon)*
+## PL/SQL Dependency Viewer
 
-Paste a package body and see which procedures call which, what tables they read and write. Interactive dependency graph.
+Interactive dependency graph for Oracle PL/SQL packages. Paste a package body
+and instantly visualize procedure calls, table reads/writes, and cross-package
+dependencies.
 
-### DDL Comparison *(Coming Soon)*
+### Features
 
-Compare two `CREATE TABLE` statements and see what changed semantically. Auto-generates the `ALTER` migration script.
+- **Interactive graph** — d3.js force-directed layout with drag, zoom, pan,
+  and click-to-focus highlighting. Procedures (blue), functions (green), and
+  tables (orange) as distinct node types. Solid edges for calls, dashed for
+  reads/writes.
+- **List view** — collapsible structured alternative for large packages.
+  Expandable entries show parameters, calls, callers, and table references
+  with line numbers.
+- **Multi-package support** — analyze up to 5 packages in separate tabs.
+  Combined mode merges all packages into a unified graph with package
+  clustering borders and purple cross-package call edges.
+- **Fullscreen mode** — expand the graph to 95% viewport for complex
+  dependency networks. Close with the × button or Escape key.
+- **100% client-side** — all parsing runs in the browser. No data is
+  uploaded, stored, or transmitted.
+
+### What It Extracts
+
+- Procedure and function declarations with parameters, direction, data types,
+  and return types
+- Internal calls between subprograms within the same package
+- Table references from SELECT, INSERT, UPDATE, DELETE, MERGE, and JOIN
+  statements (auto-classified as read or write)
+- Cross-package calls matching `package_name.subprogram_name()` patterns
+  against all loaded packages
+
+### Parser Architecture
+
+Multi-stage pipeline with independent modules:
+
+1. **Comment stripper** — removes `--`, `/* */`, and string literal contents
+   while preserving character positions for accurate line number reporting
+2. **Block extractor** — finds PROCEDURE/FUNCTION declarations, extracts
+   parameter lists, locates body boundaries via `END name;` or BEGIN/END
+   depth tracking
+3. **Call extractor** — matches references to declared subprogram names
+   within each body
+4. **Table extractor** — identifies table names from DML keywords with
+   schema-qualified name support and deduplication
+5. **Cross-package call extractor** — scans for `other_package.subprogram(`
+   patterns against the registry of all analyzed packages
+
+### Tech Stack
+
+Angular 21 (standalone components, Angular Elements), TypeScript, d3.js
+(d3-force, d3-selection, d3-zoom, d3-drag), SCSS
 
 ## Architecture
 
