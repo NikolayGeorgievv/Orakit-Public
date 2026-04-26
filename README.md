@@ -6,7 +6,7 @@ Free, browser-based developer tools for Oracle databases. Paste your execution p
 
 > Source code is private. This repo serves as a public project showcase.
 
-![OraKit Landing Page](orakitScreenshot.png)
+![OraKit Landing Page](orakitScreenshotNew.png)
 
 ## Tools
 
