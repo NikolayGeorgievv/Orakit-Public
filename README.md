@@ -13,6 +13,7 @@ Free, browser-based developer tools for Oracle databases. Paste your execution p
 ## Execution Plan Visualizer
 
 Parses Oracle `DBMS_XPLAN` output and renders it as an interactive collapsible tree with real-time analysis.
+![Plan Visualizer](plan-visualizer.png)
 
 **Parser capabilities:**
 - Dynamic column detection — reads the pipe-delimited header and maps columns by name, handling optional columns (`TempSpc`, `Pstart/Pstop`, `TQ`, `IN-OUT`, `PQ Distrib`) that shift positions when present
@@ -43,6 +44,8 @@ Parses Oracle `DBMS_XPLAN` output and renders it as an interactive collapsible t
 Interactive dependency graph for Oracle PL/SQL packages. Paste a package body
 and instantly visualize procedure calls, table reads/writes, and cross-package
 dependencies.
+
+![PL/SQL Dependency Visualizer](plsql-visualizer.png)
 
 ### Features
 
