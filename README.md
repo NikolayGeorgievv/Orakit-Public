@@ -1,6 +1,6 @@
 # OraKit
 
-Free, browser-based developer tools for Oracle databases. Paste your execution plans, PL/SQL packages, or DDL statements and get interactive visualizations and analysis — no installation, no signup, and your data never leaves your browser.
+Free, browser-based developer tools for Oracle databases. Paste your execution plans, PL/SQL packages, or DDL statements and get interactive visualizations and analysis — no installation, no signup, and your data never leaves your browser. 
 
 **Live:** [orakit.dev](https://orakit.dev)
 
